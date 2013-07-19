@@ -8,6 +8,13 @@ body{
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	color: #ccc;}
 
+h3{
+	font-size:1.4em;
+	color:#900;
+	border:1px solid #FFDFDF;
+	padding:0.5em;
+	width:92%;}
+
 ul{
 	list-style: none;}
 
@@ -18,7 +25,7 @@ ul{
 	margin: 0 auto;}
 
 div#topo{
-	background: #ccc;
+	background: #000;
 	padding: 0.3em 0;
 	overflow: hidden;}
 
@@ -99,7 +106,7 @@ div#footer{
 	div#formulario{
 		padding: 1.5em;
 		text-align: left;
-		background: #fff url(../images/fundo-cadastro.jpg) no-repeat;}
+		background: #fff url(../images/fundo-cadastro.jpg) no-repeat right;}
 
 		.submitCadastro{
 			margin-top: -4px;}
@@ -122,6 +129,7 @@ div#footer{
 		float: left;
 		margin-top: 23px;
 		width: 26%;
+		color: #000;
 		text-align: right;}
 
 		div#left ul li{

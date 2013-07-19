@@ -37,6 +37,8 @@
 
                         extract($_POST);
 
+                        echo '<h3>';
+
                         if ($nome == '' OR strlen($nome) < 4) {
                             echo 'Escreva seu nome corretamente';
                         } elseif ($sobrenome == '' OR strlen($sobrenome) < 6) {
@@ -49,27 +51,36 @@
 
                             include ('classes/DB.class.php');
 
-                            $verificar = DB::getConn()->prepare('SELECT `id` FROM `usuarios` WHERE `email`=?');
-                            if ($verificar->execute(array($email))) {
-                                if ($verificar->rowCount()  >= 1) {
-                                    echo 'Este e-mail já esta cadastro em nosso sistema';
-                                } elseif ( $senha == '' OR strlen($senha) < 4 ) {
-                                    echo 'Digite sua senha, ela tem que ter mais de 4 caracteres';
-                                } elseif ( strtolower($captcha) <> strtolower($_SESSION['captchaCadastro']) ) {
-                                    echo 'O código digitado no captcha não corresponde com a imagem.';
-                                } else {
+                            try {
 
-                                    $senhaInsert = sha1($senha);
-                                    $nascimento = "$ano-$mes-$dia";
+                                $verificar = DB::getConn()->prepare('SELECT `id` FROM `usuarios` WHERE `email`=?');
+                                if ($verificar->execute(array($email))) {
+                                    if ($verificar->rowCount()  >= 1) {
+                                        echo 'Este e-mail já esta cadastro em nosso sistema';
+                                    } elseif ( $senha == '' OR strlen($senha) < 4 ) {
+                                        echo 'Digite sua senha, ela tem que ter mais de 4 caracteres';
+                                    } elseif ( strtolower($captcha) <> strtolower($_SESSION['captchaCadastro']) ) {
+                                        echo 'O código digitado no captcha não corresponde com a imagem.';
+                                    } else {
 
-                                    $inserir = DB::getConn()->prepare('INSERT INTO `usuarios` SET `email`=?, `senha`=?, `nome`=?, `sobrenome`=?, `sexo`=?, `nascimento`=?, `cadastro`=NOW() ');
+                                        $senhaInsert = sha1($senha);
+                                        $nascimento = "$ano-$mes-$dia";
 
-                                    if ( $inserir->execute(array($email, $senhaInsert, $nome, $sobrenome, $sexo, $nascimento)) ) {
-                                        header('Location: ./');
+                                        $inserir = DB::getConn()->prepare('INSERT INTO `usuarios` SET `email`=?, `senha`=?, `nome`=?, `sobrenome`=?, `sexo`=?, `nascimento`=?, `cadastro`=NOW() ');
+
+                                        if ( $inserir->execute(array($email, $senhaInsert, $nome, $sobrenome, $sexo, $nascimento)) ) {
+                                            header('Location: ./');
+                                        }
                                     }
                                 }
+
+                            } catch (PDOException $e) {
+                                echo 'Sistema insdiponível.';
+                                logErrors($e);
                             }
                         }
+
+                        echo '</h3>';
                     }
                     ?>
 
@@ -87,15 +98,15 @@
 
                         <span class="spanHide">eu sou</span>
                         <select name="sexo" id="">
-                            <option <?php echo $sexo == 'masculino' ? 'selected="selected"' ?> value="masculino">Masculino</option>
-                            <option <?php echo $sexo == 'feminino' ? 'selected="selected"' ?> value="feminino">Feminino</option>
+                            <option <?php echo $sexo == 'masculino' ? 'selected="selected"' : '' ?> value="masculino">Masculino</option>
+                            <option <?php echo $sexo == 'feminino' ? 'selected="selected"' : '' ?> value="feminino">Feminino</option>
                         </select>
 
                         <span class="spanHide">data de nascimento</span>
                         <select name="dia">
                             <?php for ($d=1; $d <= 31 ; $d++) {
                                 $zero = $d<10 ? 0 : '';
-                                echo '<option '.($d==$dia ? 'selected="selected"').' value="'.$zero.$d.'">'.$zero.$d.'</option>';
+                                echo '<option '.($d==$dia ? 'selected="selected"' : '').' value="'.$zero.$d.'">'.$zero.$d.'</option>';
                             } ?>
                         </select>
 
@@ -105,13 +116,13 @@
 
                             for ($m=1; $m <= 12 ; $m++) {
                                 $zero = $m < 10 ? 0 : '';
-                                echo '<option '.($zero.$m==$mes ? 'selected="selected"').' value="'.$zero.$m.'">'.$meses[$m].'</option>';
+                                echo '<option '.($zero.$m==$mes ? 'selected="selected"'  : '').' value="'.$zero.$m.'">'.$meses[$m].'</option>';
                             } ?>
                         </select>
 
                         <select name="ano">
                             <?php for ($a=date('Y'); $a >= (date('Y')-100) ; $a--) {
-                                echo '<option '.($a==$ano ? 'selected="selected"').' value="'.$a.'">'.$a.'</option>';
+                                echo '<option '.($a==$ano ? 'selected="selected"' : '').' value="'.$a.'">'.$a.'</option>';
                             } ?>
                         </select>
 
