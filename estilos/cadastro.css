@@ -35,7 +35,16 @@ div#topo{
 			color: #fff;}
 
 div#content{
-	margin: 1em 0;}
+	margin: 1em 0;
+	clear: both;
+	overflow: hidden;}
+
+	div#content h1{
+		font-size: 1.6em;
+		margin-bottom: 1em}
+
+		div#content h1 span{
+			font-size: 0.6em;}
 
 	div#left{
 		display: none;}
@@ -65,5 +74,73 @@ div#content{
 			position: absolute;
 			margin-top: -10px;}
 
-div#footer{}
+div#footer{
+	clear: both;
+	margin: 4em 0 1em;
+	text-align: center;
+	font-size: 1.1em;
+}
 
+@media screen and (min-width: 360px) {
+	body{
+		font-size: 70%;}
+
+		div#formulario{
+			padding: 3em;}
+
+			div#formulario input.inputTxt{
+				width: 280px;}
+
+			.submitCadastro{
+				margin-top: 1em;}
+}
+
+@media screen and (min-width: 613px) {
+	div#formulario{
+		padding: 1.5em;
+		text-align: left;
+		background: #fff url(../images/fundo-cadastro.jpg) no-repeat;}
+
+		.submitCadastro{
+			margin-top: -4px;}
+}
+
+@media screen and (min-width: 773px) {
+	div#formulario{
+		float: right;
+		width: 545px;}
+
+		div#formulario div{
+			overflow: hidden;}
+
+		div#formulario input.inputTxt{
+			width: 200px;}
+
+	div#left{
+		display: block;
+		float: left;
+		margin-top: 140px;
+		width: 150px;
+		text-align: right;}
+
+		div#left ul li{
+			border-bottom: 1px solid #ccc;
+			padding-bottom: 1.2em;
+			margin-bottom: 1.5em;
+			font-size: 1.3em;
+			padding-right: 0.5em}
+
+			div#left ul li:last-child{
+				border: none;}
+
+	.inputFloat{
+		float: left;
+		width: 240px;}
+
+	.captchaFloat{
+		float: left;
+		width: 210px;}
+
+	.spanHide{
+		visibility: hidden;}
+}

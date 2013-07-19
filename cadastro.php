@@ -26,6 +26,8 @@
                     </ul>
                 </div><!-- left -->
 
+                <h1>Cadastre-se, <span>é grátis</span></h1>
+
                 <div id="formulario">
                     <form action="" name="cadastro" method="post">
                         <div>
@@ -57,17 +59,18 @@
                             <option value="">Ano:</option>
                         </select>
 
-                        <span>seu e-mail</span>
+                        <span class="spanHide">seu e-mail</span>
                         <input type="text" name="email" class="inputTxt">
 
-                        <span>nova senha</span>
+                        <span class="spanHide">nova senha</span>
                         <input type="text" name="senha" class="inputTxt">
 
+                        <span class="spanHide">verificação contra fraudes</span>
                         <div>
                             <div class="cartchaFloat">
                                 <img src="#" alt="captcha" width="200" height="60" />
                             </div>
-                            <div class="cartchaFloat">
+                            <div class="inputFloat">
                                 <span>digite os caracteres ao lado</span>
                                 <input type="text" name="palavra" class="inputTxt">
                             </div>
@@ -79,5 +82,9 @@
                 </div><!-- formulario -->
             </div><!-- content -->
         </div><!-- cAlign -->
+
+        <div id="footer">
+            <p>&copy; Copyright Bigui.com - Todos os direitos reservados</p>
+        </div>
     </body>
 </html>
