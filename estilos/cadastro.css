@@ -108,7 +108,8 @@ div#footer{
 @media screen and (min-width: 773px) {
 	div#formulario{
 		float: right;
-		width: 545px;}
+		width: 545px;
+		width: 70%}
 
 		div#formulario div{
 			overflow: hidden;}
@@ -119,8 +120,8 @@ div#footer{
 	div#left{
 		display: block;
 		float: left;
-		margin-top: 140px;
-		width: 150px;
+		margin-top: 23px;
+		width: 26%;
 		text-align: right;}
 
 		div#left ul li{
@@ -143,4 +144,9 @@ div#footer{
 
 	.spanHide{
 		visibility: hidden;}
+}
+
+@media screen and (min-width: 997px) {
+	div#content{
+		margin: 0 6em;}
 }

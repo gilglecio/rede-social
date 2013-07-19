@@ -43,20 +43,32 @@
 
                         <span class="spanHide">eu sou</span>
                         <select name="sexo" id="">
-                            <option value="">selecione seu genero</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
                         </select>
 
                         <span class="spanHide">data de nascimento</span>
                         <select name="dia">
-                            <option value="">Dia:</option>
+                            <?php for ($d=1; $d <= 31 ; $d++) {
+                                $zero = $d<10 ? 0 : '';
+                                echo '<option value="'.$zero.$d.'">'.$zero.$d.'</option>';
+                            } ?>
                         </select>
 
                         <select name="mes">
-                            <option value="">Mês:</option>
+                            <?php
+                            $meses = array('', 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro');
+
+                            for ($m=1; $m <= 12 ; $m++) {
+                                $zero = $m < 10 ? 0 : '';
+                                echo '<option value="'.$zero.$m.'">'.$meses[$m].'</option>';
+                            } ?>
                         </select>
 
                         <select name="ano">
-                            <option value="">Ano:</option>
+                            <?php for ($a=date('Y'); $a >= (date('Y')-100) ; $a--) {
+                                echo '<option value="'.$a.'">'.$a.'</option>';
+                            } ?>
                         </select>
 
                         <span class="spanHide">seu e-mail</span>
@@ -68,7 +80,7 @@
                         <span class="spanHide">verificação contra fraudes</span>
                         <div>
                             <div class="cartchaFloat">
-                                <img src="#" alt="captcha" width="200" height="60" />
+                                <img src="captcha/captcha.php" alt="captcha" width="200" height="60" />
                             </div>
                             <div class="inputFloat">
                                 <span>digite os caracteres ao lado</span>
