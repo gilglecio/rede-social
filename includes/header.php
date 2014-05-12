@@ -9,7 +9,8 @@ if(!$objLogin->logado()){
 	exit();
 }
 
-if(true==$_GET['sair']){
+
+if(isset($_GET['sair'])){
 	$objLogin->sair();
 	header('Location: ./');
 }
@@ -26,7 +27,7 @@ if(is_null($dados)){
 	extract($dados,EXTR_PREFIX_ALL,'user'); 
 }
 
-$user_imagem = (file_exists('/uploads/usuarios/'.$user_imagem)) ? $user_imagem : 'default.png';
+$user_imagem = (file_exists('uploads/usuarios/'.$user_imagem)) ? $user_imagem : 'default.png';
 
 ?>
 
@@ -36,9 +37,13 @@ $user_imagem = (file_exists('/uploads/usuarios/'.$user_imagem)) ? $user_imagem :
 <meta charset="utf-8" />
 <title>Bigui.com - Home</title>
 <link rel="stylesheet" media="screen" href="estilos/template.css" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
 </head>
 
 <body>
+<?php if(isset($_GET['perfil']) AND $_GET['perfil']=='CROP'):
+include('php/foto-perfil.php');
+endif; ?>
 
 <div id="topo">
 	<div class="cAlign">
@@ -78,7 +83,9 @@ $user_imagem = (file_exists('/uploads/usuarios/'.$user_imagem)) ? $user_imagem :
         	
             <div class="blocos" id="foto-perfil">
             	<a href="#"><img src="uploads/usuarios/<?php echo $user_imagem; ?>" alt="<?php echo $user_nome ?>" title="<?php echo $user_nome ?>" /></a>
-                <a href="#" id="alterar-foto">alterar foto</a>
+                <?php if($idDaSessao==$idExtrangeiro): ?>
+                <a href="perfil.php?perfil=UPLOAD" id="alterar-foto">alterar foto</a>
+                <?php endif; ?>
             </div><!--blocos-->
             
             <div class="blocos" id="menu-lateral">

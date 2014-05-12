@@ -5,7 +5,7 @@
                
                 <div class="blocos" id="dexar-recados">
                     <h1><?php echo $user_nome.' '.$user_sobrenome ?>
-                    
+                    <span>
                     <?php 
 					if($idDaSessao<>$idExtrangeiro){
 						$e_meu_amigo = DB::getConn()->prepare('SELECT * FROM `amisade` WHERE (de=? AND para=?) OR (para=? AND de=?) LIMIT 1');
@@ -24,17 +24,29 @@
 					}
 					?>
                                         
-                     <span></span></h1>
+                     </span></h1>
                     
-                    <form name="dexar-recado" action="" method="post" enctype="multipart/form-data">
-                        <input type="text" class="inputTxt" name="recado" value="Deixe um recado para seus amigos"  onfocus="if(this.value=='Deixe um recado para seus amigos')this.value='';" onblur="if(this.value=='')this.value='Deixe um recado para seus amigos';" /><input class="inputSub" type="submit" value="postar" />
-                    </form>
+                    
                 </div><!--blocos-->
 
                 <div class="blocos" id="pagina">
                 	<h2>perfil</h2>
                     
-                    
+                    <?php
+					if(isset($_GET['perfil']) AND $_GET['perfil']=='UPLOAD'){
+						
+						?>
+                        <form name="upload-foto-perfil" enctype="multipart/form-data" method="post" action="php/crop.php">
+                        	<input type="file" name="foto-perfil" />
+                            <input type="submit" value="recortar" />
+                            <input type="hidden" name="imgantiga" value="<?php echo $user_imagem ?>" />
+                            <input type="hidden" name="upload" value="perfil" />
+                            <input type="hidden" name="uid" value="<?php echo $idDaSessao ?>"/>
+                        </form>
+                        <?php
+						
+					}
+					?>
                     
                 </div><!--blocos-->
                 
