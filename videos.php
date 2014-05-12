@@ -12,7 +12,7 @@
                 </div><!--blocos-->
 
                 <div class="blocos" id="pagina">
-                	<h2>atualizações</h2>
+                	<h2>videos</h2>
                 </div><!--blocos-->
                 
             </div><!--center-->

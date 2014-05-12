@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{ margin:0; padding:0;}
+
+body{ background:#CCC; font:62.5% "Trebuchet MS", Arial, Helvetica, sans-serif; text-align:center;}
+
+img{ display:block;}
+
+a{ color:#900;}
+
+.cAlign{ width:960px; margin:0 auto; text-align:left;}
+
+div#topo{ background:#000; color:#FFF; padding:0.5em 0; overflow:hidden; font-size:1.3em;}
+	div#topo img{ float:left;}
+	div#topo span{ float:right;}
+	div#topo span a{ color:#FFF;}
+
+div#header{ width:100%; min-height:50px;padding:1em 0;}
+	div.left{ width:149.999px;}
+	div.center{ width:489.999px; margin:0 1em;}
+	div.right{ width:299.999px;}
+	
+	div.left,
+	div.center,
+	div.right{ min-height:50px; float:left;}
+	
+	div#header div.left{ background:url(../images/bigui.png) no-repeat left;}
+	
+	div#dexar-recados{ padding:0.5em; width:auto; overflow:hidden;}		
+		div#dexar-recados h1{ display:block; float:left; width:100%;}
+		div#dexar-recados form{ display:block; float:left; margin-top:1em; width:100%;}
+			div#dexar-recados input.inputTxt{ border:1px solid #CCC; width:97.5%; padding:0.3em;}
+			div#dexar-recados input.inputSub{ float:right; background:#CCC; border:none; padding:0.3em; margin-right:0.2em; margin-top:0.3em; cursor:pointer;}
+	
+	div#header .center ul{ margin-bottom:-0.1em; list-style:none; font-size:1.3em; float:left; margin-top:17px;}
+		div#header .center ul li{ float:left; display:inline;}
+			div#header .center ul li a{ border:1px solid #CCC; background:#fff; color:#666; margin-right:0.5em; padding:0.3em 0.6em;border-radius:0.5em; text-decoration:none;}
+			div#header .center ul li a.ativo,
+			div#header .center ul li a:hover{ border:1px solid #fff;}
+
+div#content{ overflow:hidden;}
+	div.blocos{ width:100%; min-height:50px; margin-bottom:1em; clear:both; background:#fff;}
+	
+	div#content .blocos{ width:auto;}
+	
+	div#pagina{ padding:0.5em; width:auto;}
+	
+	div#foto-perfil{ overflow:hidden;}
+		div#foto-perfil img{ width:100%; float:left;}
+		a#alterar-foto{ font-size:1.3em; text-decoration:none; display:block; float:left; width:100%; text-align:center; color:#FFF; margin-top:-2.2em; background:rgba(0,0,0,0.5); padding:0.4em 0; display:none;}
+		div#foto-perfil:hover a{ display:block;}		
+	
+	div#menu-lateral ul{ font-size:1.2em; list-style:none;}
+		div#menu-lateral ul li a{ display:block; color:#666; text-decoration:none; padding:0.5em; margin-bottom:0.1em; padding-left:2.2em;}
+		div#menu-lateral ul li a span{ float:right;}
+		div#menu-lateral ul li a.perfil{ background:url(../images/perfil.png) no-repeat left;}
+		div#menu-lateral ul li a.recados{ background:url(../images/recados.png) no-repeat left;}
+		div#menu-lateral ul li a.fotos{ background:url(../images/fotos.png) no-repeat left;}
+		div#menu-lateral ul li a.videos{ background:url(../images/videos.png) no-repeat left;}
+		div#menu-lateral ul li a.depoimentos{ background:url(../images/depoimentos.png) no-repeat left;}
+		div#menu-lateral ul li a:hover{ background-color:#f4f4f4;}
+	
+	div#meus-amigos{ padding:0.2em; overflow:hidden; font-size:1.3em;}	
+		div#meus-amigos span{ width:97%; display:block; padding:0.2em;}
+			div#meus-amigos span a{ float:right;}
+		div#meus-amigos ul{ width:298px; height:281px; overflow-y:scroll; list-style:none;}
+			div#meus-amigos ul li{ display:inline; float:left;}
+				div#meus-amigos ul li img{ width:66px; margin:0.2em;}
+		
+div#footer{ width:100%; background:#000; color:#FFF; font-size:1.2em; text-align:center; padding:1em 0;}		
+	div#footer p{ display:block; width:100%; text-align:center;}
