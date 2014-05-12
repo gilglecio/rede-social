@@ -3,6 +3,7 @@ include('classes/DB.class.php');
 include('classes/Login.class.php');
 
 include('classes/Amisade.class.php');
+include('classes/Recados.class.php');
 
 $objLogin = new Login;
 
@@ -40,6 +41,7 @@ function user_img($img){
 }
 
 $user_imagem = user_img($user_imagem);
+$user_fullname = $user_nome.' '.$user_sobrenome;
 
 ?>
 
@@ -100,10 +102,15 @@ endif; ?>
                 <?php endif; ?>
             </div><!--blocos-->
             
+            <?php $list_amigos = Amisade::list_amigos($idExtrangeiro); ?>
+            
             <div class="blocos" id="menu-lateral">
             	<ul>
                 	<li><a href="perfil.php?uid=<?php echo $idExtrangeiro ?>" class="perfil">perfil</a></li>
-                	<li><a href="recados.php?uid=<?php echo $idExtrangeiro ?>" class="recados">recados <span>(126)</span></a></li>
+                    
+                   	<?php $recados = Recados::getRecados($idExtrangeiro); ?>
+                    
+                	<li><a href="recados.php?uid=<?php echo $idExtrangeiro ?>" class="recados">recados <span>(<?php echo $recados['num'] ?>)</span></a></li>
                 	<li><a href="albuns.php?uid=<?php echo $idExtrangeiro ?>" class="fotos">fotos <span>(48)</span></a></li>
                     <li><a href="depoimentos.php?uid=<?php echo $idExtrangeiro ?>" class="depoimentos">depoimentos <span>(12)</span></a></li>
                     <li><a href="videos.php?uid=<?php echo $idExtrangeiro ?>" class="videos">v&iacute;deos <span>(36)</span></a></li>

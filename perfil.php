@@ -4,7 +4,7 @@
             <div class="center">
                
                 <div class="blocos" id="dexar-recados">
-                    <h1><?php echo $user_nome.' '.$user_sobrenome ?>
+                    <h2><?php echo ($idDaSessao<>$idExtrangeiro) ? $user_fullname : 'Meus perfil'; ?>
                     <span>
                     <?php 
 					if($idDaSessao<>$idExtrangeiro){	
@@ -23,7 +23,7 @@
 					}
 					?>
                                         
-                     </span></h1>
+                    </span></h2>
                     
                     
                 </div><!--blocos-->
@@ -53,11 +53,7 @@
             
             <div class="right">
             
-                <div class="blocos" id="publicidade">
-                    <img src="midias/banner.gif" />
-                </div><!--blocos-->
-                
-     			<?php include('includes/amigos.php'); ?>
+                <?php include('includes/amigos.php'); ?>
                                 
             </div><!--right-->
 

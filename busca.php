@@ -39,11 +39,7 @@
             
             <div class="right">
             
-                <div class="blocos" id="publicidade">
-                    <img src="midias/banner.gif" />
-                </div><!--blocos-->
-                
-     			<?php include('includes/amigos.php'); ?>
+                <?php include('includes/amigos.php'); ?>
                                 
             </div><!--right-->
 

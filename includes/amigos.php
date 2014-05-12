@@ -1,6 +1,8 @@
-<div class="blocos" id="meus-amigos">
+<div class="blocos" id="publicidade">
+    <img src="midias/banner.gif" />
+</div><!--blocos-->
 
-	<?php $list_amigos = Amisade::list_amigos($idExtrangeiro); ?>
+<div class="blocos" id="meus-amigos">
 
     <span>meus amigos(<?php echo $list_amigos['num'] ?>) <a href="#">todos</a></span>
     
