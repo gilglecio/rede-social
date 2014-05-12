@@ -119,6 +119,16 @@ class Login extends DB
 		return ! $this->logado(false);
 	}
 
+	public function getDados($email)
+	{
+		if ($this->logado()) {
+			$dados = self::getConn()->prepare('SELECT * FROM `' . $this->tabela . '` WHERE email=?');
+			$dados->execute(array($email));
+
+			return $dados->fetch(PDO::FETCH_ASSOC);
+		}
+	}
+
 	private function limpar_lembrados()
 	{
 		if (isset($_COOKIE[$this->prefix . 'login_user'])) {
@@ -147,10 +157,10 @@ class Login extends DB
 
 	private function lembrar_dados($usuario, $senha)
 	{
-		$tempo = strtotime('+', 7, ' day', time());
+		$tempo = strtotime('+7', ' day', time());
 
-		$usuario = rand(', 9') . base64_encode($usuario);
-		$senha = rand(', 9') . base64_encode($senha);
+		$usuario = rand(1, 9) . base64_encode($usuario);
+		$senha = rand(1, 9) . base64_encode($senha);
 
 		setcookie($this->prefix . 'login_user', $usuario, $tempo, '/');
 		setcookie($this->prefix . 'login_pass', $senha, $tempo, '/');
