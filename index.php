@@ -1,6 +1,5 @@
 <?php 
 
-
 include('includes/header.php'); ?>        
         <div id="amarra-center-left">
         
@@ -33,9 +32,48 @@ include('includes/header.php'); ?>
 					}
 				
 					?>
-                    
+ 
                 </div><!--blocos-->
-                
+
+                <?php 
+                $notificacoes = Notificacoes::listar();
+
+                foreach ($notificacoes as $value) {
+                    
+                    switch ($value['tipo']) {
+                        case 0:
+                            Notificacoes::tratarPerfil($value);
+                            break;
+                        case 1:
+                            Notificacoes::tratarFoto($value); 
+                            break;
+                        case 2:
+                            Notificacoes::tratarComentario($value);
+                            break;
+                        default:
+                            # code...
+                            break;
+                    }
+
+                }
+                // echo '<pre>';
+                // print_r(Notificacoes::$arr);
+                // exit;
+                ?> 
+
+                <div class="blocos" id="notificacoes">
+                    <ul>
+                    <?php
+                    foreach (Notificacoes::$arr as $tipo=>$albuns){
+
+                        if($tipo<>'users'){
+                             include('includes/notificacoes_'.$tipo.'.php');
+                        }
+                    }
+                    ?>
+                    </ul>
+                </div>
+
             </div><!--center-->
             
             <div class="right">

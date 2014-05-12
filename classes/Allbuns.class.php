@@ -34,18 +34,22 @@
 			return $d;
 		}
 		
-		static function getAlbum($album){
+		static function getAlbum($album,$colunas='*',$fotos=true){
 			
-			$dados = self::getConn()->prepare('SELECT * FROM `albuns` WHERE `id`=? LIMIT 1');
+			$dados = self::getConn()->prepare('SELECT '.$colunas.' FROM `albuns` WHERE `id`=? LIMIT 1');
 			$dados->execute(array($album));
 						
 			if($dados->rowCount()){
 				
-				$f = self::getFotos($album);
-				
-				$d['fotos']['num'] = $f['num'];
-				$d['fotos']['dados'] = $f['dados'];
-				
+				if($fotos){
+
+					$f = self::getFotos($album);
+							
+					$d['fotos']['num'] = $f['num'];
+					$d['fotos']['dados'] = $f['dados'];
+					
+				}
+
 				$d['album'] = $dados->fetch(PDO::FETCH_ASSOC);
 				
 				return $d;

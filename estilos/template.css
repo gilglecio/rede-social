@@ -109,6 +109,68 @@ div#galeria ul li{ list-style:none;  float:left; margin:5px;}
 
 div#listFotos ul li{ list-style:none; float:left; margin:10px; width:130px;}
 	div#listFotos ul li img{ width:100%;}
-		
+
+div#notificacoes{
+	padding: 5px;
+	overflow: hidden;
+}
+	div#notificacoes ul{}
+		div#notificacoes ul li.lista{
+			list-style: none;
+			margin-bottom: 20px;
+			padding-bottom: 20px;
+			overflow: hidden;
+			border-bottom: 1px solid #ccC;
+		}
+			div#notificacoes ul li .foto{
+				float: left;
+				width: 50px;
+			}
+				div#notificacoes ul li .foto img{
+					width: 100%;
+				}
+
+			div#notificacoes ul li .right{
+				float: right;
+				width: 425px;
+			}
+
+		div#notificacoes ul li.tratarFoto{}
+			div#notificacoes ul li.tratarFoto ul li{
+				/*width: 102px;
+				height: 70px;
+				
+				margin: 2px;
+				overflow: hidden;*/
+				float: left;
+				margin: 2px;
+				border: 1px solid #ccc;
+			}
+
+			div#notificacoes ul li.tratarFoto ul.nFotos1 li{
+				width: 418px;
+			}
+			div#notificacoes ul li.tratarFoto ul.nFotos2 li{
+				width: 205px;
+				height: 150px;
+				overflow: hidden;
+			}
+			div#notificacoes ul li.tratarFoto ul.nFotos3 li{
+				width: 135px;
+				height: 100px;
+				overflow: hidden;
+			}
+			div#notificacoes ul li.tratarFoto ul.nFotos4 li{
+				width: 205px;
+				height: 130px;
+				overflow: hidden;
+			}
+
+				div#notificacoes ul li.tratarFoto ul li img{
+					width: 100%;
+					float: left;
+				}
+
+
 div#footer{ width:100%; background:#000; color:#FFF; font-size:1.2em; text-align:center; padding:1em 0;}		
 	div#footer p{ display:block; width:100%; text-align:center;}

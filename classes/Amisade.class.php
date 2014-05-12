@@ -2,6 +2,8 @@
 	
 	class Amisade extends DB{
 		
+		static $strIdAmigos = null;
+
 		static function list_amigos($idExtrangeiro){
 			
 			$selAmigos= self::getConn()->prepare('SELECT u.id, u.nome, u.sobrenome, u.imagem FROM usuarios u INNER JOIN amisade a ON (((u.id=a.de) AND (a.para=?)) OR ((u.id=a.para) AND (a.de=?))) AND a.status=1');
@@ -9,6 +11,8 @@
 			$d['num'] = $selAmigos->rowCount();
 			$d['dados'] = $selAmigos->fetchAll();
 			
+			self::$strIdAmigos = self::strIdAmigos($d['dados']);
+
 			return $d;
 		}
 		
@@ -49,12 +53,23 @@
 		
 		static function delAmigo($id){						
 			$del = DB::getConn()->prepare('DELETE FROM `amisade` WHERE `id`=?');
-			return $del->execute(array($id));		
+			return $del->execute(array($id));
 		}
 		
 		static function aceitarAmigo($id){
 			$convite = self::getConn()->prepare('UPDATE `amisade` SET `status`=1 WHERE `id`=?');
 			return $convite->execute(array($id));
+		}
+
+		static function strIdAmigos($amigos){
+
+			$ids = array();
+
+			foreach ($amigos as $value) {
+				array_push($ids, $value['id']);
+			}
+
+			return implode(',', $ids);
 		}
 		
 	}

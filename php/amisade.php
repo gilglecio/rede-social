@@ -1,6 +1,8 @@
 <?php
 	include('../classes/DB.class.php');
 	include('../classes/Amisade.class.php');
+
+	include('../classes/Notificacoes.class.php');
 	
 	$acE = explode('|',$_GET['ac']);
 	

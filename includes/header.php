@@ -5,6 +5,7 @@ include('classes/Login.class.php');
 include('classes/Amisade.class.php');
 include('classes/Recados.class.php');
 include('classes/Allbuns.class.php');
+include('classes/Notificacoes.class.php');
 
 $objLogin = new Login;
 
@@ -16,6 +17,7 @@ if(!$objLogin->logado()){
 if(isset($_GET['sair'])){
 	$objLogin->sair();
 	header('Location: ./');
+    exit;
 }
 
 $idExtrangeiro = (isset($_GET['uid'])) ? (int)$_GET['uid'] : $_SESSION['socialbigui_uid'];
@@ -24,7 +26,9 @@ $idDaSessao = $_SESSION['socialbigui_uid'];
 $idExists = DB::getConn()->prepare('SELECT `id` FROM `usuarios` WHERE `id`=?');
 $idExists->execute(array($idExtrangeiro));
 if($idExists->rowCount()==0){
-	die('Usuario nao existe!');
+	$objLogin->sair();
+    header('Location: ./');
+    exit;
 }
 
 $dados = $objLogin->getDados($idExtrangeiro);

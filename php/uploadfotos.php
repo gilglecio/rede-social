@@ -7,6 +7,7 @@
 		include('funcoes.php');
 		include('../classes/DB.class.php');
 		include('../classes/Allbuns.class.php');
+		include('../classes/Notificacoes.class.php');
 		
 		$album = (int)$_POST['album'];
 		
@@ -17,6 +18,9 @@
 		
 		if(Albuns::addFotos($album,$uid,$nome)){
 			upload($fotos['tmp_name'],$fotos['name'],$nome,500,'../uploads/fotos');
+
+			$log = Notificacoes::add($uid, 1, $album.':'.$nome);
+
 			echo 1;
 			exit();
 		}

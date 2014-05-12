@@ -6,7 +6,7 @@
 		private $prefix = 'socialbigui_';
 		private $cookie = true;
 		public $erro = '';
-		
+
 		private function crip($senha){
 			return sha1($senha);
 		}
@@ -20,8 +20,9 @@
 			
 			if($validar->rowCount()==1){
 			
-				$asValidar = $validar->fetch(PDO::FETCH_NUM);
-				$_SESSION[$this->prefix.'uid'] = $asValidar[0];
+				$asValidar = $validar->fetch(PDO::FETCH_ASSOC);
+				
+				$_SESSION[$this->prefix.'uid'] = $asValidar['id'];
 				return true;
 			}else{
 				return false;
@@ -113,10 +114,12 @@
 			return !$this->logado(false);
 		}
 		
-		function getDados($uid){
+		function getDados($uid,$colunas='*'){
 			if($this->logado()){
-				$dados = self::getConn()->prepare('SELECT * FROM `'.$this->tabela.'` WHERE `id`=?');
+				
+				$dados = self::getConn()->prepare('SELECT '.$colunas.' FROM `'.$this->tabela.'` WHERE `id`=?');
 				$dados->execute(array($uid));
+
 				return $dados->fetch(PDO::FETCH_ASSOC);
 			}
 		}

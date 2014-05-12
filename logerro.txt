@@ -42,3 +42,5 @@ erro: CAUGHT EXCEPTION no arquivo: D:\wamp\wamp\www\aula-rede-social\classes\DB.
 erro: CAUGHT EXCEPTION no arquivo: D:\wamp\wamp\www\aula-rede-social\classes\DB.class.php ( linha 6 ) :: IP(127.0.0.1) data:07/07/12 18:07:05
 erro: CAUGHT EXCEPTION no arquivo: D:\wamp\wamp\www\aula-rede-social\classes\DB.class.php ( linha 6 ) :: IP(127.0.0.1) data:07/07/12 18:07:08
 erro: CAUGHT EXCEPTION no arquivo: D:\wamp\wamp\www\aula-rede-social\classes\DB.class.php ( linha 6 ) :: IP(127.0.0.1) data:07/07/12 18:07:11
+erro: CAUGHT EXCEPTION no arquivo: C:\Program Files\EasyPHP-12.1\www\aula-rede-social\classes\DB.class.php ( linha 6 ) :: IP(127.0.0.1) data:29/10/12 10:26:05
+erro: CAUGHT EXCEPTION no arquivo: C:\Program Files\EasyPHP-12.1\www\aula-rede-social\classes\DB.class.php ( linha 6 ) :: IP(127.0.0.1) data:29/10/12 10:26:09
