@@ -14,11 +14,7 @@
 		
 		$imagem = $_FILES['foto-perfil'];
 		
-		//EU FIZ O NOME DA IMAGEM ERRADA...
-		//ERA PRA SER
-		// $nome = $uid.sha1($imagem['name']).date('-his').'.jpg';
-		
-		$nome = sha1($imagem['name']).'-his'.'.jpg';
+		$nome = $uid.date('s').'.jpg';
 		
 		$ext = array('image/jpeg','image/pjpeg','image/jpg','image/gif','image/png');	
 		

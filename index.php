@@ -15,19 +15,22 @@
                 	<h2>atualizações</h2>
                     
                     <?php 
-					$e_meu_amigo = DB::getConn()->prepare('SELECT * FROM `amisade` WHERE para=? ANd `status`=0');
+					$solicitacoes = DB::getConn()->prepare('SELECT * FROM `amisade` WHERE para=? ANd `status`=0');
+					$solicitacoes->execute(array($idDaSessao));
 					
-					$dadosamisade = DB::getConn()->prepare("SELECT `nome` FROM `usuarios` WHERE `id`=? LIMIT 1");
+					$dadosamisade = DB::getConn()->prepare("SELECT `nome`,`sobrenome` FROM `usuarios` WHERE `id`=? LIMIT 1");
 					
-					$e_meu_amigo->execute(array($idDaSessao));
-					if($e_meu_amigo->rowcount()>0){
+					if($solicitacoes->rowcount()>0){
+						$link = '<a href="php/amisade.php?ac=';
 						echo '<ul>';
-						while($resmeuamigo=$e_meu_amigo->fetch(PDO::FETCH_ASSOC)){
+						while($resmeuamigo=$solicitacoes->fetch(PDO::FETCH_ASSOC)){
 							
 							$dadosamisade->execute(array($resmeuamigo['de']));
 							$asdadsoamisade = $dadosamisade->fetch(PDO::FETCH_ASSOC);
 							
-							echo '<li>'.$asdadsoamisade['nome'].' '.$asdadsoamisade['sobrenome'].' quer ser seu amigo <a href="php/amisade.php?ac=aceitar&id='.$resmeuamigo['id'].'">aceitar</a> <a href="php/amisade.php?ac=remover&id='.$resmeuamigo['id'].'&de='.$resmeuamigo['de'].'&para='.$idDaSessao.'">recusar</a></li>';
+							echo '<li>'.$asdadsoamisade['nome'].' '.$asdadsoamisade['sobrenome'].' quer ser seu amigo '.
+							$link.'aceitar|'.$resmeuamigo['id'].'">aceitar</a> '.
+							$link.'remover|'.$resmeuamigo['de'].'|'.$idDaSessao.'|'.$resmeuamigo['id'].'">recusar</a></li>';
 						}
 						echo '</ul>';
 					}

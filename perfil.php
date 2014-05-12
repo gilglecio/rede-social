@@ -7,19 +7,18 @@
                     <h1><?php echo $user_nome.' '.$user_sobrenome ?>
                     <span>
                     <?php 
-					if($idDaSessao<>$idExtrangeiro){
-						$e_meu_amigo = DB::getConn()->prepare('SELECT * FROM `amisade` WHERE (de=? AND para=?) OR (para=? AND de=?) LIMIT 1');
-						$e_meu_amigo->execute(array($idDaSessao,$idExtrangeiro,$idDaSessao,$idExtrangeiro));
+					if($idDaSessao<>$idExtrangeiro){	
 						
-						if($e_meu_amigo->rowCount()==0){
-							echo '<a href="php/amisade.php?ac=convite&de='.$idDaSessao.'&para='.$idExtrangeiro.'">adicionar amigo</a>';
-						}else{
-							$asstatusamisade = $e_meu_amigo->fetch(PDO::FETCH_ASSOC);
-							if($asstatusamisade['status']==0){
-								echo '<a href="php/amisade.php?ac=remover&id='.$asstatusamisade['id'].'&de='.$idDaSessao.'&para='.$idExtrangeiro.'">cancelar pedido</a>';
-							}else{
-								echo '<a href="php/amisade.php?ac=remover&id='.$asstatusamisade['id'].'&de='.$idDaSessao.'&para='.$idExtrangeiro.'">remover amigo</a>';
-							}
+						$solicitacao = Amisade::solicitacao($idDaSessao,$idExtrangeiro);
+						
+						$link = '<a href="php/amisade.php?ac=';		
+						
+						if($solicitacao['r']==0){
+							echo $link.'convite|'.$idDaSessao.'|'.$idExtrangeiro.'">adicionar amigo</a>';
+						}elseif($solicitacao['r']==1){
+							echo $link.'remover|'.$idDaSessao.'|'.$idExtrangeiro.'|'.$solicitacao['id'].'">cancelar pedido</a>';
+						}elseif($solicitacao['r']==2){
+							echo $link.'remover|'.$idDaSessao.'|'.$idExtrangeiro.'|'.$solicitacao['id'].'">remover amigo</a>';
 						}
 					}
 					?>

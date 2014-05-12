@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2011-11-04 11:48:50
+Date: 2011-11-11 00:17:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,14 +43,14 @@ CREATE TABLE `amisade` (
   `para` int(11) NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of amisade
 -- ----------------------------
-INSERT INTO `amisade` VALUES ('8', '2', '1', '1');
-INSERT INTO `amisade` VALUES ('9', '1', '3', '1');
 INSERT INTO `amisade` VALUES ('10', '2', '3', '1');
+INSERT INTO `amisade` VALUES ('19', '1', '2', '1');
+INSERT INTO `amisade` VALUES ('20', '1', '3', '0');
 
 -- ----------------------------
 -- Table structure for `depimentos`
@@ -128,9 +128,9 @@ CREATE TABLE `usuarios` (
 -- ----------------------------
 -- Records of usuarios
 -- ----------------------------
-INSERT INTO `usuarios` VALUES ('1', 'gilglecio_765@hotmail.com', 'effd4619301d732cef4a84f6df23d7dd54090620', 'gilglecio', 'santos', '2002-10-10', 'feminino', '8532323ee41ad9a88ab390f14aa2243ba8296d44-his.jpg', '0', '2011-10-26', '0');
-INSERT INTO `usuarios` VALUES ('2', 'roberto@hotmail.com', 'effd4619301d732cef4a84f6df23d7dd54090620', 'roberto', 'silva santos', '2011-01-01', 'masculino', null, '0', '2011-10-26', '0');
-INSERT INTO `usuarios` VALUES ('3', 'anapaula@hotmail.com', 'effd4619301d732cef4a84f6df23d7dd54090620', 'ana paula', 'francisca', '2011-01-01', 'masculino', null, '0', '2011-10-26', '0');
+INSERT INTO `usuarios` VALUES ('1', 'gilglecio_765@hotmail.com', 'effd4619301d732cef4a84f6df23d7dd54090620', 'gilglecio', 'santos', '2002-10-10', 'feminino', 'cfb358ac94e951dba59e861f4db527a7c3355f3e-his.jpg', '0', '2011-10-26', '0');
+INSERT INTO `usuarios` VALUES ('2', 'roberto@hotmail.com', 'effd4619301d732cef4a84f6df23d7dd54090620', 'roberto', 'silva santos', '2011-01-01', 'masculino', '2.jpg', '0', '2011-10-26', '0');
+INSERT INTO `usuarios` VALUES ('3', 'anapaula@hotmail.com', 'effd4619301d732cef4a84f6df23d7dd54090620', 'ana paula', 'francisca', '2011-01-01', 'masculino', '3.jpg', '0', '2011-10-26', '0');
 
 -- ----------------------------
 -- Table structure for `videos`

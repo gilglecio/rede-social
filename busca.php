@@ -4,7 +4,7 @@
             <div class="center">
                
             <?php
-				if(''<>$_GET['s']){
+				if(isset($_GET['s']) AND $_GET['s']<>''){
 					
 					$explode = explode(' ',$_GET['s']);
 					$numP = count($explode);
@@ -30,6 +30,8 @@
 						echo '</ul>';
 					}
 					
+				}else{
+					echo 'Sem resultados';
 				}
 			?>
                 

@@ -2,6 +2,8 @@
 include('classes/DB.class.php');
 include('classes/Login.class.php');
 
+include('classes/Amisade.class.php');
+
 $objLogin = new Login;
 
 if(!$objLogin->logado()){
@@ -15,8 +17,14 @@ if(isset($_GET['sair'])){
 	header('Location: ./');
 }
 
-$idExtrangeiro = (isset($_GET['uid'])) ? $_GET['uid'] : $_SESSION['socialbigui_uid'];
+$idExtrangeiro = (isset($_GET['uid'])) ? (int)$_GET['uid'] : $_SESSION['socialbigui_uid'];
 $idDaSessao = $_SESSION['socialbigui_uid'];
+
+$idExists = DB::getConn()->prepare('SELECT `id` FROM `usuarios` WHERE `id`=?');
+$idExists->execute(array($idExtrangeiro));
+if($idExists->rowCount()==0){
+	die('Usuario nao existe!');
+}
 
 $dados = $objLogin->getDados($idExtrangeiro);
 
@@ -27,7 +35,11 @@ if(is_null($dados)){
 	extract($dados,EXTR_PREFIX_ALL,'user'); 
 }
 
-$user_imagem = (file_exists('uploads/usuarios/'.$user_imagem)) ? $user_imagem : 'default.png';
+function user_img($img){
+	return ($img<>'' AND file_exists('uploads/usuarios/'.$img)) ? $img : 'default.png';
+}
+
+$user_imagem = user_img($user_imagem);
 
 ?>
 
