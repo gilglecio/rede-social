@@ -4,6 +4,7 @@ include('classes/Login.class.php');
 
 include('classes/Amisade.class.php');
 include('classes/Recados.class.php');
+include('classes/Allbuns.class.php');
 
 $objLogin = new Login;
 
@@ -11,7 +12,6 @@ if(!$objLogin->logado()){
 	include('login.php');
 	exit();
 }
-
 
 if(isset($_GET['sair'])){
 	$objLogin->sair();
@@ -102,7 +102,10 @@ endif; ?>
                 <?php endif; ?>
             </div><!--blocos-->
             
-            <?php $list_amigos = Amisade::list_amigos($idExtrangeiro); ?>
+            <?php 
+			$list_amigos = Amisade::list_amigos($idExtrangeiro); 
+			$albuns = Albuns::listAlbuns($idExtrangeiro);
+			?>
             
             <div class="blocos" id="menu-lateral">
             	<ul>
@@ -111,7 +114,8 @@ endif; ?>
                    	<?php $recados = Recados::getRecados($idExtrangeiro); ?>
                     
                 	<li><a href="recados.php?uid=<?php echo $idExtrangeiro ?>" class="recados">recados <span>(<?php echo $recados['num'] ?>)</span></a></li>
-                	<li><a href="albuns.php?uid=<?php echo $idExtrangeiro ?>" class="fotos">fotos <span>(48)</span></a></li>
+                    
+                    <li><a href="albuns.php?uid=<?php echo $idExtrangeiro ?>" class="fotos">fotos <span>(<?php echo Albuns::totalFotos($idExtrangeiro); ?>)</span></a></li>
                     <li><a href="depoimentos.php?uid=<?php echo $idExtrangeiro ?>" class="depoimentos">depoimentos <span>(12)</span></a></li>
                     <li><a href="videos.php?uid=<?php echo $idExtrangeiro ?>" class="videos">v&iacute;deos <span>(36)</span></a></li>
                 </ul>

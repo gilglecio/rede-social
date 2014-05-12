@@ -5,6 +5,8 @@
 			
 			$inserir = self::getConn()->prepare('INSERT INTO `recados` SET `de`=?, `para`=?, `recado`=?, `data`=NOW()');
 			
+			$para = ($para=='selecionar') ? 'amigos' : $para;
+			
 			if(is_array($para)){
 				$num = count($para);
 				for($r=0;$r<$num;$r++){

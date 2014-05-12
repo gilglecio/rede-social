@@ -1,4 +1,7 @@
-<?php include('includes/header.php'); ?>        
+<?php 
+
+
+include('includes/header.php'); ?>        
         <div id="amarra-center-left">
         
             <div class="center">

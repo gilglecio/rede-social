@@ -25,13 +25,22 @@
 	
 	if(isset($_POST['postarrecado'])){
 		
-		if($_POST['recadopara']=='selecionar'){
+		$_POST['recadoamigos'] = isset($_POST['recadoamigos']) ? $_POST['recadoamigos'] : '';
+		
+		if($_POST['recadopara']=='selecionar' AND $_POST['recadoamigos']<>''){
 			$para = $_POST['recadoamigos'];
 		}else{
 			$para = (!isset($_POST['recadopara'])) ? $idExtrangeiro : $_POST['recadopara'];
 		}
 
-		Recados::setRecado($idDaSessao,$para,$_POST['txtrecado']);
+		if($_POST['txtrecado']<>''){
+			Recados::setRecado($idDaSessao,$para,$_POST['txtrecado']);
+			
+			$location = ($idExtrangeiro<>$idDaSessao) ? 'recados.php?uid='.$idExtrangeiro : './';
+			
+			header('Location: '.$location);
+			exit();
+		}
 	}
 	
 	?>

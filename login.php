@@ -26,7 +26,10 @@
         		<h5>Acesse com a sua</h5>
             	<span>
                 <?php if(isset($_POST['logar'])){
-					if($objLogin->logar($_POST['email'],$_POST['senha'],$_POST['lembrar'])){
+					
+					$lembrar = isset($_POST['lembrar']) ? $_POST['lembrar'] : '';
+					
+					if($objLogin->logar($_POST['email'],$_POST['senha'],$lembrar)){
 						header('Location: ./');
 						exit;
 					}else{

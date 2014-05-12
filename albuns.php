@@ -4,7 +4,15 @@
             <div class="center">
                
                 <div class="blocos" id="pagina">
-                	<h2><?php echo ($idDaSessao<>$idExtrangeiro) ? 'Albuns de '.$user_fullname : 'Meus albuns'; ?></h2>
+                	 
+                     <?php
+					 if(isset($_GET['aid'])){
+						 include('includes/list_fotos.php');
+					 }else{
+						 include('includes/list_albuns.php');
+					 }
+					 ?>
+                     
                 </div><!--blocos-->
                 
             </div><!--center-->
@@ -14,8 +22,7 @@
                 <?php include('includes/amigos.php'); ?>
                                 
             </div><!--right-->
-
-                    
+    
         </div><!--amarra-center-left-->
         
 <?php include('includes/footer.php'); ?>

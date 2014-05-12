@@ -1,7 +1,7 @@
 <?php include('includes/header.php'); ?>        
         <div id="amarra-center-left">
         
-            <div class="center">
+            <div class="center" id="busca">
                
             <?php
 				if(isset($_GET['s']) AND $_GET['s']<>''){
@@ -9,23 +9,36 @@
 					$explode = explode(' ',$_GET['s']);
 					$numP = count($explode);
 					
-					for($i=0;$i<$numP;$i++){
-						$busca .= " ( `nome` LIKE :busca$i OR `sobrenome` LIKE :busca$i ) ";
-						if($i<>$numP-1){ $busca .= ' AND '; }
+					if($numP==1){
+						$busca = ' `nome` LIKE :nome ';
+					}else{
+						$busca = ' `nome`=:nome  AND `sobrenome` LIKE :sobrenome ';
 					}
-														
 					$buscar = DB::getConn()->prepare("SELECT * FROM `usuarios` WHERE $busca");
 					
-					for($i=0;$i<$numP;$i++){
-						$buscar->bindValue(":busca$i",'%'.$explode[$i].'%',PDO::PARAM_STR);
+					if($numP==1){
+						$buscar->bindValue(":nome",'%'.$explode[0].'%',PDO::PARAM_STR);
+					}else{
+						$buscar->bindValue(":nome",$explode[0],PDO::PARAM_STR);
+						$buscar->bindValue(":sobrenome",'%'.$explode[1].'%',PDO::PARAM_STR);						
 					}
-					
 					$buscar->execute();
 					
 					if($buscar->rowCount()>0){
 						echo '<ul>';
 						while($resbusca=$buscar->fetch(PDO::FETCH_ASSOC)){
-							echo '<li><a href="perfil.php?uid='.$resbusca['id'].'">'.$resbusca['nome'].' '.$resbusca['sobrenome'].'</a></li>';
+							
+							if($resbusca['id']<>$user_id){
+								
+								$idade = (date('Y')-date('Y',strtotime($resbusca['nascimento'])));
+								$idade = ($idade==0) ? '' : 'tenho '.$idade.', ';
+								$genero = ($resbusca['sexo']=='feminino') ? 'mulher' : 'homem';
+								
+								echo '<li><span><img src="uploads/usuarios/'.user_img($resbusca['imagem']).'" /></span>
+								<h2><a href="perfil.php?uid='.$resbusca['id'].'">'.$resbusca['nome'].' '.$resbusca['sobrenome'].'</a></h2>
+								<p>'.$idade.$genero.'</p></li>';
+							
+							}
 						}
 						echo '</ul>';
 					}

@@ -19,7 +19,8 @@
 			$validar->execute(array($usuario,$senha));
 			
 			if($validar->rowCount()==1){
-				$asValidar = $validar->fetch(PDO::FETCH_COLUMN);
+			
+				$asValidar = $validar->fetch(PDO::FETCH_NUM);
 				$_SESSION[$this->prefix.'uid'] = $asValidar[0];
 				return true;
 			}else{
@@ -65,7 +66,7 @@
 				session_start();
 			}
 			
-			if(!isset($_SESSION[$this->prefix.'logado']) AND !$_SESSION[$this->prefix.'logado']){
+			if(!isset($_SESSION[$this->prefix.'logado'])){
 				if($cookei){
 					return $this->dadosLembrados();
 				}else{
@@ -83,7 +84,7 @@
 					$valor = sha1($valor);
 					
 					if($_COOKIE[$this->prefix.'token'] !== $valor){
-						$this->erro = 'Você não estálogado';
+						$this->erro = 'Você não está logado';
 						return false;
 					}
 				}

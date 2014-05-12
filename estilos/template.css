@@ -79,7 +79,36 @@ div#content{ overflow:hidden;}
 			div#meus-amigos span a{ float:right;}
 		div#meus-amigos ul{ width:298px; height:281px; overflow-y:scroll; list-style:none;}
 			div#meus-amigos ul li{ display:inline; float:left;}
-				div#meus-amigos ul li img{ width:66px; margin:0.2em;}
+			div#meus-amigos ul li span{ width:65px; height:70px; overflow:hidden;}
+				div#meus-amigos ul li img{ width:100%;}
+				
+div#busca ul li{ background:#FFF; margin-bottom:3px; overflow:hidden; list-style:none; padding:5px;}
+	div#busca ul li span{ width:60px; height:60px; overflow:hidden; float:left; margin-right:10px;}
+	div#busca ul li img{ width:100%;}
+
+div#listrecados{  margin-top:20px;}
+div#listrecados ul li{ overflow:hidden; margin-bottom:4px; border-bottom:1px solid #CCC; margin-bottom:15px; padding-bottom:10px;}
+	div#listrecados ul li span{ width:40px; height:40px; overflow:hidden; float:left; margin-right:10px;}
+	div#listrecados ul li span img{ width:100%;}
+	div#listrecados ul li h3{ display:block; float:left;}
+	div#listrecados ul li p{ float:left; width:100%; margin-left:50px; font:13px Arial, Helvetica, sans-serif; list-style:18px; margin-top:10px;}
+	div#listrecados ul li ul li{ list-style:none; float:left; margin:0; padding:0; margin-right:1px; border:none;}
+	div#listrecados ul li ul li span{ width:30px; height:30px; margin:0;}
+
+div#listAlbuns,div#listFotos{ overflow:hidden;}	
+div#listAlbuns ul li{ list-style:none; float: left; width:140px; margin:10px;}
+	div#listAlbuns ul li img{ width:100%;}
+	div#listAlbuns form{ margin:10px;}
+	div#listAlbuns input,
+	div#listAlbuns textarea{ margin:5px; border:1px solid #CCC; padding:5px;}
+
+div#galeria ul li{ list-style:none;  float:left; margin:5px;}
+	div#galeria ul li span{ width:60px; height:60px; overflow:hidden; float:left;}
+	div#galeria ul li span img{ width:100%;}
+	img.atualfotogaleria{ width:100%;}
+
+div#listFotos ul li{ list-style:none; float:left; margin:10px; width:130px;}
+	div#listFotos ul li img{ width:100%;}
 		
 div#footer{ width:100%; background:#000; color:#FFF; font-size:1.2em; text-align:center; padding:1em 0;}		
 	div#footer p{ display:block; width:100%; text-align:center;}
