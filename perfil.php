@@ -34,25 +34,7 @@
                 <div class="blocos" id="pagina">
                 	<h2>perfil</h2>
                     
-                    <?php 
-					$e_meu_amigo = DB::getConn()->prepare('SELECT * FROM `amisade` WHERE para=? ANd `status`=0');
-					
-					$dadosamisade = DB::getConn()->prepare("SELECT `nome` FROM `usuarios` WHERE `id`=? LIMIT 1");
-					
-					$e_meu_amigo->execute(array($idDaSessao));
-					if($e_meu_amigo->rowcount()>0){
-						echo '<ul>';
-						while($resmeuamigo=$e_meu_amigo->fetch(PDO::FETCH_ASSOC)){
-							
-							$dadosamisade->execute(array($resmeuamigo['de']));
-							$asdadsoamisade = $dadosamisade->fetch(PDO::FETCH_ASSOC);
-							
-							echo '<li>'.$asdadsoamisade['nome'].' '.$asdadsoamisade['sobrenome'].' quer ser seu amigo <a href="php/amisade.php?ac=aceitar&id='.$resmeuamigo['id'].'">aceitar</a> <a href="php/amisade.php?ac=remover&id='.$resmeuamigo['id'].'&de='.$resmeuamigo['de'].'&para='.$idDaSessao.'">recusar</a></li>';
-						}
-						echo '</ul>';
-					}
-				
-					?>
+                    
                     
                 </div><!--blocos-->
                 
