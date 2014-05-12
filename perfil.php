@@ -4,7 +4,27 @@
             <div class="center">
                
                 <div class="blocos" id="dexar-recados">
-                    <h1><?php echo $user_nome.' '.$user_sobrenome ?></h1>
+                    <h1><?php echo $user_nome.' '.$user_sobrenome ?>
+                    
+                    <?php 
+					if($idDaSessao<>$idExtrangeiro){
+						$e_meu_amigo = DB::getConn()->prepare('SELECT * FROM `amisade` WHERE (de=? AND para=?) OR (para=? AND de=?) LIMIT 1');
+						$e_meu_amigo->execute(array($idDaSessao,$idExtrangeiro,$idDaSessao,$idExtrangeiro));
+						
+						if($e_meu_amigo->rowCount()==0){
+							echo '<a href="php/amisade.php?ac=convite&de='.$idDaSessao.'&para='.$idExtrangeiro.'">adicionar amigo</a>';
+						}else{
+							$asstatusamisade = $e_meu_amigo->fetch(PDO::FETCH_ASSOC);
+							if($asstatusamisade['status']==0){
+								echo '<a href="php/amisade.php?ac=remover&id='.$asstatusamisade['id'].'&de='.$idDaSessao.'&para='.$idExtrangeiro.'">cancelar pedido</a>';
+							}else{
+								echo '<a href="php/amisade.php?ac=remover&id='.$asstatusamisade['id'].'&de='.$idDaSessao.'&para='.$idExtrangeiro.'">remover amigo</a>';
+							}
+						}
+					}
+					?>
+                                        
+                     <span></span></h1>
                     
                     <form name="dexar-recado" action="" method="post" enctype="multipart/form-data">
                         <input type="text" class="inputTxt" name="recado" value="Deixe um recado para seus amigos"  onfocus="if(this.value=='Deixe um recado para seus amigos')this.value='';" onblur="if(this.value=='')this.value='Deixe um recado para seus amigos';" /><input class="inputSub" type="submit" value="postar" />
@@ -13,6 +33,27 @@
 
                 <div class="blocos" id="pagina">
                 	<h2>perfil</h2>
+                    
+                    <?php 
+					$e_meu_amigo = DB::getConn()->prepare('SELECT * FROM `amisade` WHERE para=? ANd `status`=0');
+					
+					$dadosamisade = DB::getConn()->prepare("SELECT `nome` FROM `usuarios` WHERE `id`=? LIMIT 1");
+					
+					$e_meu_amigo->execute(array($idDaSessao));
+					if($e_meu_amigo->rowcount()>0){
+						echo '<ul>';
+						while($resmeuamigo=$e_meu_amigo->fetch(PDO::FETCH_ASSOC)){
+							
+							$dadosamisade->execute(array($resmeuamigo['de']));
+							$asdadsoamisade = $dadosamisade->fetch(PDO::FETCH_ASSOC);
+							
+							echo '<li>'.$asdadsoamisade['nome'].' '.$asdadsoamisade['sobrenome'].' quer ser seu amigo <a href="php/amisade.php?ac=aceitar&id='.$resmeuamigo['id'].'">aceitar</a> <a href="php/amisade.php?ac=remover&id='.$resmeuamigo['id'].'&de='.$resmeuamigo['de'].'&para='.$idDaSessao.'">recusar</a></li>';
+						}
+						echo '</ul>';
+					}
+				
+					?>
+                    
                 </div><!--blocos-->
                 
             </div><!--center-->
@@ -23,29 +64,7 @@
                     <img src="midias/banner.gif" />
                 </div><!--blocos-->
                 
-                <div class="blocos" id="meus-amigos">
-                    <span>meus amigos(18) <a href="#">todos</a></span>
-                    <ul>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                        <li><a href="#"><img src="midias/user.jpg" alt="" title="usuario" /></a></li>
-                    </ul>
-                </div><!--blocos-->
+     			<?php include('includes/amigos.php'); ?>
                                 
             </div><!--right-->
 

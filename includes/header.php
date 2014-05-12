@@ -65,7 +65,7 @@ $user_imagem = (file_exists('/uploads/usuarios/'.$user_imagem)) ? $user_imagem :
         
         <div class="right">
         	<span>pesquisa</span>
-            <form name="pesquisa-all" action="" method="get">
+            <form name="pesquisa-all" action="busca.php" method="get">
             	<input type="text" name="s" /><input type="submit" value="buscar" />
             </form>
         </div><!--left-->

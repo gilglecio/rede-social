@@ -59,6 +59,7 @@ div#content{ overflow:hidden;}
 		div#menu-lateral ul li a.fotos{ background:url(../images/fotos.png) no-repeat left;}
 		div#menu-lateral ul li a.videos{ background:url(../images/videos.png) no-repeat left;}
 		div#menu-lateral ul li a.depoimentos{ background:url(../images/depoimentos.png) no-repeat left;}
+		div#menu-lateral ul li a.atualizacoes{ background:url(../images/atualizacoes.png) no-repeat left;}
 		div#menu-lateral ul li a:hover{ background-color:#f4f4f4;}
 	
 	div#meus-amigos{ padding:0.2em; overflow:hidden; font-size:1.3em;}	

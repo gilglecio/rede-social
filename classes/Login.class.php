@@ -37,7 +37,7 @@
 		function logar($usuario,$senha,$lembrar=false){
 			if($this->validar($usuario,$senha)){
 				
-				if(!$_SESSION){
+				if(!isset($_SESSION)){
 					session_start();
 				}
 				
@@ -61,7 +61,7 @@
 		}
 		
 		function logado($cookei=true){
-			if(!$_SESSION){
+			if(!isset($_SESSION)){
 				session_start();
 			}
 			
@@ -92,7 +92,7 @@
 		}		
 		
 		function sair($cookie=true){
-			if(!$_SESSION){
+			if(!isset($_SESSION)){
 				session_start();
 			}
 			
