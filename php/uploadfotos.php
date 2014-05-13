@@ -16,10 +16,13 @@
 		$fotos = $_FILES['fotos'];
 		$nome = sha1($fotos['name'].$album.$uid).'.jpg';
 		
-		if(Albuns::addFotos($album,$uid,$nome)){
+		if ( Albuns::addFotos($album,$uid,$nome)){
+
+			$fotoId = DB::getConn()->lastInsertId();
+
 			upload($fotos['tmp_name'],$fotos['name'],$nome,500,'../uploads/fotos');
 
-			$log = Notificacoes::add($uid, 1, $album.':'.$nome);
+			$log = Notificacoes::add($uid, 1, $album.':'.$fotoId.':'.$nome);
 
 			echo 1;
 			exit();

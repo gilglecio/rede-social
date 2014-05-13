@@ -1,4 +1,7 @@
 <?php
+
+ini_set('display_errors', 'On');
+
 include('classes/DB.class.php');
 include('classes/Login.class.php');
 

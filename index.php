@@ -36,26 +36,10 @@ include('includes/header.php'); ?>
                 </div><!--blocos-->
 
                 <?php 
-                $notificacoes = Notificacoes::listar();
+                
+                new Notificacoes;
+                $cache = Notificacoes::$cache;               
 
-                foreach ($notificacoes as $value) {
-                    
-                    switch ($value['tipo']) {
-                        case 0:
-                            Notificacoes::tratarPerfil($value);
-                            break;
-                        case 1:
-                            Notificacoes::tratarFoto($value); 
-                            break;
-                        case 2:
-                            Notificacoes::tratarComentario($value);
-                            break;
-                        default:
-                            # code...
-                            break;
-                    }
-
-                }
                 // echo '<pre>';
                 // print_r(Notificacoes::$arr);
                 // exit;
@@ -64,11 +48,10 @@ include('includes/header.php'); ?>
                 <div class="blocos" id="notificacoes">
                     <ul>
                     <?php
-                    foreach (Notificacoes::$arr as $tipo=>$albuns){
+                    foreach (Notificacoes::$dados as $campos) {
 
-                        if($tipo<>'users'){
-                             include('includes/notificacoes_'.$tipo.'.php');
-                        }
+                        extract($campos);
+                        include('includes/notificacoes_' . $tipo . '.php');
                     }
                     ?>
                     </ul>

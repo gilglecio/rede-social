@@ -1,61 +1,89 @@
 <?php
 
-	/*
-	tipo = array{
-		0=>'alterações de perfil'
-		1=>'adição de fotos'
-		2=>'comentario'
-	}
-	*/
-
 	class Notificacoes extends DB{
 
-		static $arr = array();
+		static $tipo = array (
+			0 => 'tratarPerfil',
+			1 => 'tratarFoto'
+			2 => 'tratarComentario',
+			3 => 'tratarAmisade',
+		);
 
-		static function add($uid, $tipo, $result){
+		static $sessionTemp = 'sdfdsfsffsfff';
 
-			$query = self::getConn()->prepare('insert into notificacoes set uid=?, tipo=?, `result`=?');
-			return $query->execute(array($uid,$tipo,$result));
+		static $cache = array();
+		static $dados = array();
 
+		public function __construct()
+		{
+			$notificacoes = self::listar();
+
+            foreach ($notificacoes as $value) {
+                
+                switch ($value['tipo']) {
+                    case 0:
+                        self::tratarPerfil($value);
+                        break;
+                    case 1:
+                        self::tratarFoto($value); 
+                        break;
+                    case 2:
+                        self::tratarComentario($value);
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+
+            }
 		}
 
-		static function listar(){
+		public function __destruct()
+		{
+			unset($_SESSION[self::$sessionTemp]);
+		}
 
+		static function add($uid, $tipo, $result)
+		{
+			$query = self::getConn()->prepare('insert into notificacoes set uid=?, tipo=?, `result`=?');
+			return $query->execute(array($uid,$tipo,$result));
+		}
+
+		static function listar()
+		{
 			$strIdAmigos = Amisade::$strIdAmigos;
-
-			$query = self::getConn()->query('select * from notificacoes where uid in ('.$strIdAmigos.')');
-
+			$query = self::getConn()->query('select * from notificacoes where uid in ('.$strIdAmigos.') order by id desc');
 			return $query->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		static function tratarFoto($value){
+		static function tratarFoto($value)
+		{
+			list($id, $tipo, $uid, $result, $data) = array_values($value);
+			list($idAlbum, $fotoId, $fotoSRC) = explode(':', $result);
 
-			extract($value);
+			self::setUser($uid);
+			self::setAlbum($idAlbum);
 
-			$arr_result = explode(':', $result);
+			self::$cache['fotos'][$albumId][$fotoId] = $fotoSRC;
 
-			if(!isset(self::$arr['users'][$uid])){
-				$objLogin = new Login;
-				$user = $objLogin->getDados($uid,'nome,sobrenome,imagem');
-				self::$arr['users'][$uid]['id'] = $uid;
-				self::$arr['users'][$uid]['nome'] = $user['nome'].' '.$user['sobrenome'];
-				self::$arr['users'][$uid]['imagem'] = $user['imagem'];
+			$dados = array(
+				'tipo' => self::$tipo[$tipo],
+				'userId' => $uid,
+				'userNome' => self::$cache['users'][$uid]['nome'],
+				'userImagem' => self::$cache['users'][$uid]['imagem'],
+				'albumId' => $albumId,
+				'albumTitulo' => self::$cache['album'][$albumId]['titulo'],
+				'data' => $data,
+			);
+
+			if ( ! isset($_SESSION[self::$sessionTemp]))
+				$_SESSION[self::$sessionTemp] = array();
+
+			if ( ! in_array($albumId, $_SESSION[self::$sessionTemp])) {
+				self::$dados[] = $dados;
+				array_push($_SESSION[self::$sessionTemp], $albumId);
 			}
 
-			if(!isset(self::$arr['tratarFoto'][$arr_result[0]])){
-				$album = Albuns::getAlbum($arr_result[0],'titulo',false);
-				self::$arr['tratarFoto'][$arr_result[0]] = $album['album'];
-			}else{
-				foreach (self::$arr['users'][$uid] as $key => $value) {
-					self::$arr['tratarFoto'][$arr_result[0]]['user_'.$key] = $value;
-				}
-			}
-
-			self::$arr['tratarFoto'][$arr_result[0]]['fotos'][] = $arr_result[1];
-
-			foreach (self::$arr['tratarFoto'] as $idAlbum => $campos) {
-				self::$arr['tratarFoto'][$idAlbum]['nFotos'] = count($campos['fotos']);
-			}
 		}
 
 		/*
@@ -72,5 +100,26 @@
 			}
 		}
 		*/
+
+		static function setUser($uid)
+		{
+			if ( ! isset(self::$cache['users'][$uid])) {
+
+				$objLogin = new Login;
+				$user = $objLogin->getDados($uid,'nome, sobrenome, imagem');
+
+				self::$cache['users'][$uid]['nome'] = $user['nome'].' '.$user['sobrenome'];
+				self::$cache['users'][$uid]['imagem'] = $user['imagem'] == '' ? 'default.png' : $user['imagem'];
+			}
+		}
+
+		static function setAlbum($albumId)
+		{
+			if ( ! isset(self::$cache['album'][$albumId])) {
+
+				$album = Albuns::getAlbum($albumId, 'titulo', false);
+				self::$cache['album'][$albumId] = $album['album'];
+			}
+		}
 
 	}
