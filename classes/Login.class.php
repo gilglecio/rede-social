@@ -17,7 +17,7 @@
 			try{
 			$validar = self::getConn()->prepare('SELECT `id` FROM `'.$this->tabela.'` WHERE `email`=? AND `senha`=? LIMIT 1');
 			$validar->execute(array($usuario,$senha));
-			
+
 			if($validar->rowCount()==1){
 			
 				$asValidar = $validar->fetch(PDO::FETCH_ASSOC);
@@ -30,6 +30,7 @@
 			
 			
 			}catch(PDOException $e){
+				die($e->getMessage());
 				$this->erro = 'Sistema indisponível';
 				logErros($e);
 				return false;

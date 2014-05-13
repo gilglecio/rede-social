@@ -29,5 +29,3 @@
 
 	</div>
 </li>
-
-<?php endforeach ?>

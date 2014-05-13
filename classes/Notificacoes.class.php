@@ -4,7 +4,7 @@
 
 		static $tipo = array (
 			0 => 'tratarPerfil',
-			1 => 'tratarFoto'
+			1 => 'tratarFoto',
 			2 => 'tratarComentario',
 			3 => 'tratarAmisade',
 		);
@@ -64,24 +64,24 @@
 			self::setUser($uid);
 			self::setAlbum($idAlbum);
 
-			self::$cache['fotos'][$albumId][$fotoId] = $fotoSRC;
+			self::$cache['fotos'][$idAlbum][$fotoId] = $fotoSRC;
 
 			$dados = array(
 				'tipo' => self::$tipo[$tipo],
 				'userId' => $uid,
 				'userNome' => self::$cache['users'][$uid]['nome'],
 				'userImagem' => self::$cache['users'][$uid]['imagem'],
-				'albumId' => $albumId,
-				'albumTitulo' => self::$cache['album'][$albumId]['titulo'],
+				'albumId' => $idAlbum,
+				'albumTitulo' => self::$cache['album'][$idAlbum]['titulo'],
 				'data' => $data,
 			);
 
 			if ( ! isset($_SESSION[self::$sessionTemp]))
 				$_SESSION[self::$sessionTemp] = array();
 
-			if ( ! in_array($albumId, $_SESSION[self::$sessionTemp])) {
+			if ( ! in_array($idAlbum, $_SESSION[self::$sessionTemp])) {
 				self::$dados[] = $dados;
-				array_push($_SESSION[self::$sessionTemp], $albumId);
+				array_push($_SESSION[self::$sessionTemp], $idAlbum);
 			}
 
 		}
