@@ -36,7 +36,7 @@
         foreach($albuns['dados'] as $resalbuns):
 		
 			$numfotos = Albuns::getAlbum($resalbuns['id']);
-			$file = 'uploads/fotos/'.$resalbuns['capa'];
+			$file = 'uploads/fotos/200/'.$resalbuns['capa'];
 			$li = '<li><img src="'.(file_exists($file) ? $file : 'uploads/fotos/default.jpg' ).'" /><a href="albuns.php?uid='.$idExtrangeiro.'&aid='.$resalbuns['id'].'">'.$resalbuns['titulo'].'</a> ('.$numfotos['fotos']['num'].')</li>';			
 			
 			if($resalbuns['permissao']==1 AND $idDaSessao==$idExtrangeiro){

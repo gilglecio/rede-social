@@ -90,7 +90,7 @@ if(isset($_GET['ac']) AND $_GET['ac']=='ADD_FOTOS' AND $idDaSessao==$idExtrangei
 if($minhasfotos['fotos']['num']>0){
 	echo '<ul>';
 	foreach($minhasfotos['fotos']['dados'] as $resfotos):
-		echo '<li><a href="albuns.php?uid='.$idExtrangeiro.'&aid='.(int)$_GET['aid'].'&fid='.$resfotos['id'].'"><img src="uploads/fotos/'.$resfotos['foto'].'" width="200" /></a>';
+		echo '<li><a href="albuns.php?uid='.$idExtrangeiro.'&aid='.(int)$_GET['aid'].'&fid='.$resfotos['id'].'"><img src="uploads/fotos/200/'.$resfotos['foto'].'" width="200" /></a>';
 		
 		echo $idDaSessao==$idExtrangeiro ? '<a class="delfotos" id="delFoto-'.$resfotos['id'].'" href="javascript:void(0);">excluir</a>' : '';
 		

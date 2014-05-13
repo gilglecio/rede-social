@@ -11,7 +11,7 @@ if($minhasfotos['fotos']['num']>0){
 			$verFoto[] = $resfotos;
 		}
 	
-		echo '<li><span><a href="albuns.php?uid='.$idExtrangeiro.'&aid='.(int)$_GET['aid'].'&fid='.$resfotos['id'].'"><img src="uploads/fotos/'.$resfotos['foto'].'" width="80" /></a></span></li>';
+		echo '<li><span><a href="albuns.php?uid='.$idExtrangeiro.'&aid='.(int)$_GET['aid'].'&fid='.$resfotos['id'].'"><img src="uploads/fotos/100/'.$resfotos['foto'].'" width="80" /></a></span></li>';
 	endforeach;
 	echo '</ul>';
 	
