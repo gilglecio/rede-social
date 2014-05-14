@@ -1,10 +1,10 @@
 <?php
 	session_start();
-	
+
 	header('Content-type: image/jpeg');
 	
 	$image = imagecreate(200,70);
-	$fonte = 'arial.ttf';
+	$fonte = $_SERVER['DOCUMENT_ROOT'] . '/captcha/arial.ttf';
 	$corFundo = imagecolorallocate($image,255,255,255);
 	$corLetra = imagecolorallocate($image,255,0,0);
 	
