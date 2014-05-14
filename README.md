@@ -1,6 +1,8 @@
 rede-social
 ===========
 
+[![Build Status](https://travis-ci.org/gilglecioCom/rede-social.svg?branch=dev)](https://travis-ci.org/gilglecioCom/rede-social)
+
 Série didática ensinando a criar uma rede social com PHP.
 
 Olá pessoal sou Gilglécio Santos, este é o segunda vídeo da série "Criando uma rede social" com php.
