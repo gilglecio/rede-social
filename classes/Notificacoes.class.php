@@ -52,6 +52,11 @@
 		static function listar()
 		{
 			$strIdAmigos = Amisade::$strIdAmigos;
+
+			if ( ! $strIdAmigos) {
+				return array();
+			}
+
 			$query = self::getConn()->query('select * from notificacoes where uid in ('.$strIdAmigos.') order by id desc');
 			return $query->fetchAll(PDO::FETCH_ASSOC);
 		}

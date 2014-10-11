@@ -1,0 +1,4 @@
+uploads/fotos/*
+uploads/usuarios/*
+!uploads/fotos/default.png
+!uploads/usuarios/default.png

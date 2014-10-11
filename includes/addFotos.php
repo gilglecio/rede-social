@@ -3,6 +3,7 @@
 <script type="text/javascript" src="uploadify/swfobject.js"></script>
 <script type="text/javascript" src="uploadify/jquery.uploadify.v2.1.4.min.js"></script>
 <script type="text/javascript">
+
 $(document).ready(function(){
 	$('#file_upload').uploadify({
 		'uploader'    : 'uploadify/uploadify.swf',

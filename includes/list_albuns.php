@@ -37,7 +37,7 @@
 		
 			$numfotos = Albuns::getAlbum($resalbuns['id']);
 			$file = 'uploads/fotos/'.$resalbuns['capa'];
-			$li = '<li><img src="'.(file_exists($file) ? $file : 'uploads/fotos/default.jpg' ).'" /><a href="albuns.php?uid='.$idExtrangeiro.'&aid='.$resalbuns['id'].'">'.$resalbuns['titulo'].'</a> ('.$numfotos['fotos']['num'].')</li>';			
+			$li = '<li><img src="'.(file_exists($file) ? $file : 'uploads/fotos/default.png' ).'" /><a href="albuns.php?uid='.$idExtrangeiro.'&aid='.$resalbuns['id'].'">'.$resalbuns['titulo'].'</a> ('.$numfotos['fotos']['num'].')</li>';			
 			
 			if($resalbuns['permissao']==1 AND $idDaSessao==$idExtrangeiro){
 				echo $li;

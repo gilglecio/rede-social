@@ -47,6 +47,21 @@ function user_img($img){
 	return ($img<>'' AND file_exists('uploads/usuarios/'.$img)) ? $img : 'default.png';
 }
 
+function dd($in, $dump = false)
+{
+    echo '<pre>';
+
+    if ($dump) {
+        var_dump($in);
+    } else {
+        print_r($in);
+    }
+
+    echo '</pre>';
+
+    exit;
+}
+
 $user_imagem = user_img($user_imagem);
 $user_fullname = $user_nome.' '.$user_sobrenome;
 
