@@ -56,7 +56,7 @@ $user_fullname = $user_nome.' '.$user_sobrenome;
 <html lang="pt-br">
 <head>
 <meta charset="utf-8" />
-<title>Bigui.com - Home</title>
+<title>Bigui.com (EM DESENVOLVIMENTO)</title>
 <link rel="stylesheet" media="screen" href="estilos/template.css" type="text/css" />
 <script type="text/javascript" src="js/jquery.js"></script>
 </head>
