@@ -3,7 +3,11 @@
 		private static $conn;
 		static function getConn(){
 			if(is_null(self::$conn)){
-				self::$conn = new PDO('mysql:host=localhost;dbname=aularedesocial','root','123');
+				if (php_sapi_name() == 'cli-server') {
+					self::$conn = new PDO('mysql:host=localhost;dbname=aularedesocial','root','123');
+				} else {
+					self::$conn = new PDO('mysql:host=localhost;dbname=bigui','bigui', file_get_contents('passwd'));
+				}
 				self::$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			}
 			return self::$conn;
