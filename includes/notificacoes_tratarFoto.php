@@ -20,7 +20,7 @@
 				<?php $i=0; foreach ($cache['fotos'][$albumId] as $fotoId => $fotoSRC): ?>
 
 				<li><a href="albuns.php?uid=<?php echo $userId ?>&aid=<?php echo $albumId ?>&fid=<?php echo $fotoId ?>">
-					<img src="uploads/fotos/<?php echo $fotoSRC ?>" />
+					<img src="uploads/fotos/200/<?php echo $fotoSRC ?>" />
 				</a></li>
 
 				<?php $i++; if($i==4) break; endforeach?>

@@ -1,6 +1,13 @@
 <?php
-	class Albuns extends DB{
-		
+	class Albuns extends DB
+	{
+		static $options = array(
+			'crop' => array(
+				'path' => 'uploads/fotos',
+				'cortes' => array(100, 200, 350),
+				'quality' => 75
+			),
+		);		
 		
 		static function newAlbum($usuario,$titulo,$descricao,$permissao){
 			

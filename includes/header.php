@@ -9,6 +9,7 @@ include('classes/Amisade.class.php');
 include('classes/Recados.class.php');
 include('classes/Allbuns.class.php');
 include('classes/Notificacoes.class.php');
+include('php/funcoes.php');
 
 $objLogin = new Login;
 

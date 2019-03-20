@@ -20,7 +20,10 @@
 
 			$fotoId = DB::getConn()->lastInsertId();
 
-			upload($fotos['tmp_name'],$fotos['name'],$nome,500,'../uploads/fotos');
+			$path = '../uploads/fotos';
+			upload($fotos['tmp_name'],$fotos['name'],$nome,500,$path);
+
+			crop($nome, array('path' => $path));
 
 			$log = Notificacoes::add($uid, 1, $album.':'.$fotoId.':'.$nome);
 
