@@ -1,6 +1,8 @@
 rede-social
 ===========
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/EscovadorDeBIT/rede-social?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/gilglecioCom/rede-social.svg?branch=dev)](https://travis-ci.org/gilglecioCom/rede-social)
 
 Série didática ensinando a criar uma rede social com PHP.
