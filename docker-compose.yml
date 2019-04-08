@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  app:
+    image: mattrayner/lamp:latest-1804
+    container_name: rede-social
+    volumes:
+      - .:/app
+    ports:
+      - "4002:80"
+    environment:
+      MYSQL_USER_DB: redesocial
+      MYSQL_USER_PASS: 123
+      MYSQL_ADMIN_PASS: 123
