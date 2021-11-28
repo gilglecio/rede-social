@@ -4,8 +4,9 @@ services:
   app:
     image: mattrayner/lamp:latest-1804
     container_name: rede-social
+    working_dir: /var/www/html
     volumes:
-      - .:/app
+      - .:/var/www/html
     ports:
       - "4002:80"
     environment:
