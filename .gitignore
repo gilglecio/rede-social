@@ -4,3 +4,4 @@ uploads/usuarios/*
 !uploads/usuarios/default.png
 *.bak
 supervisord.log
+/vendor/
