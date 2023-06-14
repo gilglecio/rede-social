@@ -6,7 +6,7 @@
 			0 => 'tratarPerfil',
 			1 => 'tratarFoto',
 			2 => 'tratarComentario',
-			3 => 'tratarAmisade',
+			3 => 'tratarAmizade',
 		);
 
 		static $sessionTemp = 'sdfdsfsffsfff';
@@ -51,7 +51,7 @@
 
 		static function listar()
 		{
-			$strIdAmigos = Amisade::$strIdAmigos;
+			$strIdAmigos = Amizade::$strIdAmigos;
 
 			if ( ! $strIdAmigos) {
 				return array();

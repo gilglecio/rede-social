@@ -12,7 +12,7 @@ if($minhasfotos['album']['permissao']==1 AND $idDaSessao<>$idExtrangeiro){
 	
 }elseif($minhasfotos['album']['permissao']==2){
 	
-	$visivel = Amisade::solicitacao($idDaSessao,$idExtrangeiro);
+	$visivel = Amizade::solicitacao($idDaSessao,$idExtrangeiro);
 	
 	if($visivel['r']<>2 AND $idDaSessao<>$idExtrangeiro){
 		header('Location: albuns.php');

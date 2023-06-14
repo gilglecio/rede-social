@@ -17,7 +17,7 @@
 								<h3>';
 								echo '<ul><li>para: </li>';
 								if($asRecados['para']=='amigos'){
-									$amigos_recados = Amisade::list_amigos($asRecados['de']);
+									$amigos_recados = Amizade::list_amigos($asRecados['de']);
 									
 									foreach($amigos_recados['dados'] as $asAmigosRec){
 										echo '<li><span><a href="perfil.php?uid='.$asAmigosRec['id'].'" /><img title="'.$asAmigosRec['nome'].' '.$asAmigosRec['sobrenome'].'" src="uploads/usuarios/'.user_img($asAmigosRec['imagem']).'" /></a></span></li>';

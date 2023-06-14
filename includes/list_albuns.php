@@ -31,7 +31,7 @@
     if($albuns['num']>0){
         echo '<ul>';
 		
-		$visivel = Amisade::solicitacao($idDaSessao,$idExtrangeiro);
+		$visivel = Amizade::solicitacao($idDaSessao,$idExtrangeiro);
 		
         foreach($albuns['dados'] as $resalbuns):
 		

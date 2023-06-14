@@ -5,7 +5,7 @@ ini_set('display_errors', 'On');
 include('classes/DB.class.php');
 include('classes/Login.class.php');
 
-include('classes/Amisade.class.php');
+include('classes/Amizade.class.php');
 include('classes/Recados.class.php');
 include('classes/Allbuns.class.php');
 include('classes/Notificacoes.class.php');
@@ -126,7 +126,7 @@ endif; ?>
             </div><!--blocos-->
             
             <?php 
-			$list_amigos = Amisade::list_amigos($idExtrangeiro); 
+			$list_amigos = Amizade::list_amigos($idExtrangeiro); 
 			$albuns = Albuns::listAlbuns($idExtrangeiro);
 			?>
             

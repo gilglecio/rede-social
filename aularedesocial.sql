@@ -42,10 +42,10 @@ CREATE TABLE IF NOT EXISTS `albuns` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `amisade`
+-- Estrutura da tabela `amizade`
 --
 
-CREATE TABLE IF NOT EXISTS `amisade` (
+CREATE TABLE IF NOT EXISTS `amizade` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `de` int(11) NOT NULL,
   `para` int(11) NOT NULL,

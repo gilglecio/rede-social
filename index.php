@@ -12,20 +12,20 @@ include('includes/header.php'); ?>
                     <?php include('includes/form_recados.php'); ?>
                     
                     <?php 
-					$solicitacoes = DB::getConn()->prepare('SELECT * FROM `amisade` WHERE para=? ANd `status`=0');
+					$solicitacoes = DB::getConn()->prepare('SELECT * FROM `amizade` WHERE para=? ANd `status`=0');
 					$solicitacoes->execute(array($idDaSessao));
 					
-					$dadosamisade = DB::getConn()->prepare("SELECT `nome`,`sobrenome` FROM `usuarios` WHERE `id`=? LIMIT 1");
+					$dadosamizade = DB::getConn()->prepare("SELECT `nome`,`sobrenome` FROM `usuarios` WHERE `id`=? LIMIT 1");
 					
 					if($solicitacoes->rowcount()>0){
-						$link = '<a href="php/amisade.php?ac=';
+						$link = '<a href="php/amizade.php?ac=';
 						echo '<ul>';
 						while($resmeuamigo=$solicitacoes->fetch(PDO::FETCH_ASSOC)){
 							
-							$dadosamisade->execute(array($resmeuamigo['de']));
-							$asdadsoamisade = $dadosamisade->fetch(PDO::FETCH_ASSOC);
+							$dadosamizade->execute(array($resmeuamigo['de']));
+							$asdadsoamizade = $dadosamizade->fetch(PDO::FETCH_ASSOC);
 							
-							echo '<li>'.$asdadsoamisade['nome'].' '.$asdadsoamisade['sobrenome'].' quer ser seu amigo '.
+							echo '<li>'.$asdadsoamizade['nome'].' '.$asdadsoamizade['sobrenome'].' quer ser seu amigo '.
 							$link.'aceitar|'.$resmeuamigo['id'].'">aceitar</a> '.
 							$link.'remover|'.$resmeuamigo['de'].'|'.$idDaSessao.'|'.$resmeuamigo['id'].'">recusar</a></li>';
 						}

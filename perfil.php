@@ -9,9 +9,9 @@
                     <?php 
 					if($idDaSessao<>$idExtrangeiro){	
 						
-						$solicitacao = Amisade::solicitacao($idDaSessao,$idExtrangeiro);
+						$solicitacao = Amizade::solicitacao($idDaSessao,$idExtrangeiro);
 						
-						$link = '<a href="php/amisade.php?ac=';		
+						$link = '<a href="php/amizade.php?ac=';		
 						
 						if($solicitacao['r']==0){
 							echo $link.'convite|'.$idDaSessao.'|'.$idExtrangeiro.'">adicionar amigo</a>';
