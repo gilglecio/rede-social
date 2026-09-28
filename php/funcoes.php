@@ -32,6 +32,13 @@ function crop($src, $options = array())
 			$y = ($altura - $width) / 2;
 		endif;
 
+		$largura = (int)round($largura);
+		$altura = (int)round($altura);
+		$x = (int)round($x);
+		$y = (int)round($y);
+
+		if (!is_dir("$path/$width")) mkdir("$path/$width", 0775, true);
+
 		$plano = imagecreatetruecolor($width, $width);
 
 		imagecopyresampled($plano, $img, 0, 0, $x, $y, $largura, $altura, $imgW, $imgH);
@@ -46,9 +53,9 @@ function crop($src, $options = array())
 
 function upload($tmp, $name, $nome, $larguraP, $pasta){
 	
-	$ext = strtolower(end(explode('.',$name)));
+	$ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
 	
-	if($ext=='jpg'){
+	if($ext=='jpg' OR $ext=='jpeg'){
 		$img = imagecreatefromjpeg($tmp);
 	}elseif($ext=='gif'){
 		$img = imagecreatefromgif($tmp);
@@ -67,6 +74,9 @@ function upload($tmp, $name, $nome, $larguraP, $pasta){
 		$largura = ($altura*$x) / $y;
 	}
 	
+	$largura = (int)round($largura);
+	$altura = (int)round($altura);
+
 	$nova = imagecreatetruecolor($largura, $altura);
 	imagecopyresampled($nova, $img, 0, 0, 0, 0, $largura, $altura, $x, $y);
 	imagejpeg($nova, "$pasta/$nome");

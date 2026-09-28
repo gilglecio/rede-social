@@ -3,7 +3,11 @@
 		private static $conn;
 		static function getConn(){
 			if(is_null(self::$conn)){
-				self::$conn = new PDO('mysql:host=localhost;dbname=redesocial','admin','123');
+				$host = getenv('DB_HOST') ?: 'localhost';
+				$name = getenv('DB_NAME') ?: 'redesocial';
+				$user = getenv('DB_USER') ?: 'admin';
+				$pass = getenv('DB_PASS') ?: '123';
+				self::$conn = new PDO("mysql:host=$host;dbname=$name;charset=utf8mb4",$user,$pass);
 				self::$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			}
 			return self::$conn;
@@ -27,7 +31,7 @@
 		$strErro = 'erro: '.$err.' no arquivo: '.$errfile.' ( linha '.$errline.' ) :: IP('.$_SERVER['REMOTE_ADDR'].') data:'.date('d/m/y H:i:s')."\n";
 		
 		
-		$arquivo = fopen('logerro.txt','a');
+		$arquivo = fopen(__DIR__.'/../logerro.txt','a');
 		fwrite($arquivo,$strErro);
 		fclose($arquivo);
 		

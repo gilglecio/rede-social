@@ -1,8 +1,6 @@
-version: '3'
-
 services:
   app:
-    build: . 
+    build: .
     container_name: rede-social
     working_dir: /var/www/html
     volumes:
@@ -10,6 +8,32 @@ services:
     ports:
       - "4002:80"
     environment:
-      MYSQL_USER_DB: redesocial
-      MYSQL_USER_PASS: 123
-      MYSQL_ADMIN_PASS: 123
+      DB_HOST: db
+      DB_NAME: redesocial
+      DB_USER: redesocial
+      DB_PASS: "123"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.0
+    container_name: rede-social-db
+    environment:
+      MYSQL_DATABASE: redesocial
+      MYSQL_USER: redesocial
+      MYSQL_PASSWORD: "123"
+      MYSQL_ROOT_PASSWORD: "123"
+    ports:
+      - "3307:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./aularedesocial.sql:/docker-entrypoint-initdb.d/aularedesocial.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p123"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  db-data:

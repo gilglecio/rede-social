@@ -23,7 +23,7 @@
 	
 	if(isset($_POST['foto'])){
 	
-		$id = end(explode('-',$_POST['foto']));
+		$id = (int)substr(strrchr($_POST['foto'],'-'),1);
 		
 		$legenda = strip_tags(trim($_POST['legenda']));	
 					
