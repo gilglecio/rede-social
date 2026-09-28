@@ -1,31 +1,35 @@
-<link href="uploadify/uploadify.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="uploadify/swfobject.js"></script>
-<script type="text/javascript" src="uploadify/jquery.uploadify.v2.1.4.min.js"></script>
 <script type="text/javascript">
+$(function(){
+	$('#enviarfotos').click(function(){
+		var arquivos = $('#file_upload')[0].files;
+		var pendentes = arquivos.length;
 
-$(document).ready(function(){
-	$('#file_upload').uploadify({
-		'uploader'    : 'uploadify/uploadify.swf',
-		'script'      : 'php/uploadfotos.php?album=',
-		'cancelImg'   : 'uploadify/cancel.png',
-		'folder'      : 'uploads/fotos',
-		'fileDataName': 'fotos',
-		'multi'       : true,
-		'scriptData'  : {'album':<?php echo (int)$_GET['aid']; ?>, 'uid':<?php echo $idDaSessao ?>},
-		'fileExt'     : '*.jpg;*.gif;*.png',
-		'buttonText'  : 'Buscar fotos',
-		'width'       : 250,
-		'onAllComplete' : function(event,data){
-			window.location.href="albuns.php?uid=<?php echo $idExtrangeiro ?>&aid=<?php echo (int)$_GET['aid']; ?>";
-		}
+		if(!pendentes) return false;
+
+		$('#statusupload').html('Enviando ' + pendentes + ' foto(s)...');
+
+		$.each(arquivos, function(i, arquivo){
+			var dados = new FormData();
+			dados.append('fotos', arquivo);
+			dados.append('album', <?php echo (int)$_GET['aid']; ?>);
+			dados.append('uid', <?php echo (int)$idDaSessao ?>);
+
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', 'php/uploadfotos.php');
+			xhr.onloadend = function(){
+				if(--pendentes == 0){
+					window.location.href="albuns.php?uid=<?php echo $idExtrangeiro ?>&aid=<?php echo (int)$_GET['aid']; ?>";
+				}
+			};
+			xhr.send(dados);
+		});
+
+		return false;
 	});
-	
-	
 });
 </script>
 
 <form action="" method="post">
-  	<input id="file_upload" name="file_upload" type="file" />
-  	<p><a href="javascript:$('#file_upload').uploadifyUpload();">Fazer Upload</a></p>
+  	<input id="file_upload" name="file_upload" type="file" accept=".jpg,.jpeg,.gif,.png" multiple />
+  	<p><a id="enviarfotos" href="javascript:void(0);">Fazer Upload</a> <span id="statusupload"></span></p>
 </form>

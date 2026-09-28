@@ -7,7 +7,7 @@
 		include('../classes/DB.class.php');
 		include('../classes/Allbuns.class.php');
 	
-		$id = end(explode('-',$_POST['foto']));
+		$id = (int)substr(strrchr($_POST['foto'],'-'),1);
 		
 		$uid = $_SESSION['socialbigui_uid'];
 		

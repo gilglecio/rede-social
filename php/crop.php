@@ -35,13 +35,14 @@
 	if(isset($_POST['salvar'])){
 		$img = imagecreatefromjpeg('../uploads/usuarios/'.$_POST['imagem']);
 		$largura = 160;
-		$altura = ($largura * $_POST['h']) / $_POST['w'];
+		$altura = (int)round(($largura * (int)$_POST['h']) / max(1, (int)$_POST['w']));
 		
 		$nova = imagecreatetruecolor($largura,$altura);
 		
-		imagecopyresampled($nova,$img,0,0,$_POST['x'],$_POST['y'],$largura,$altura,$_POST['w'],$_POST['h']);
+		imagecopyresampled($nova,$img,0,0,(int)$_POST['x'],(int)$_POST['y'],$largura,$altura,(int)$_POST['w'],(int)$_POST['h']);
 		imagejpeg($nova,'../uploads/usuarios/'.$_POST['imagem'],80);
 		header('Location: ../perfil.php');
+		exit();
 	}
 	
 	header('Location: ../');

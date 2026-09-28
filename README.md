@@ -9,8 +9,16 @@ Nesta aula vou está estruturando o layout da pagina de cadastro para celulares 
 
 ## Rodando
 
-- Run `docker-compose up -d`
+Requisitos: Docker com Docker Compose.
 
-## Acessando container e importando base de dados
+```bash
+docker compose up -d --build
+```
 
-- Run `docker exec -it rede-social bash` e `mysql -uadmin -p123 redesocial < aularedesocial.sql`.
+- Aplicação: http://localhost:4002 (crie uma conta em "Crie uma agora")
+- MySQL: `localhost:3307`, banco `redesocial`, usuário `redesocial` / senha `123` (root: `123`)
+
+O banco é criado automaticamente a partir de `aularedesocial.sql` na primeira subida.
+Para recriar o banco do zero: `docker compose down -v && docker compose up -d`.
+
+Se o seu usuário no host não tiver uid 1000, rode `docker compose build --build-arg UID=$(id -u)` para que o Apache consiga gravar em `uploads/`.
